@@ -548,7 +548,7 @@ int main(int argc, char const *argv[])
    
 int  total = 0;
 int ans = 0,inx;
-ct = 0,bt = 0;
+int tp = 0,tn = 0, fn=0, fp=0 ;
 int wrong = 0,left = 0;
 for(int i = 0; i<testingdata.size();i++){           //TESTING 
 
@@ -557,29 +557,38 @@ if(testingdata[i].size() == 15){
         ans = search(&root,testingdata[i]);
         total++;
 
-        if(  ans == 1 && testingdata[i][14] == ">50K." ){ct++;
+        if(  ans == 1 && testingdata[i][14] == ">50K." ){tp++;
                cout<<">50K"<<"------------------"<<">50K"<<endl;
         }
         else if(ans == 0 && testingdata[i][14] == "<=50K."){
-         bt++;
+         tn++;
         cout<<"<=50K"<<"----------------"<<"<=50K"<<endl;
         }
         
-        else if( ans == 0 && testingdata[i][14] == ">50K."){
+        else if( ans == 0 && testingdata[i][14] == ">50K."){fn++;
          cout<<"<=50K"<<"xxxxxxxxxxxxxxxxxx"<<">50K"<<"   "<<endl;
         }
 
-         else if( ans == 1 && testingdata[i][14] == "<=50K."){
+         else if( ans == 1 && testingdata[i][14] == "<=50K."){fp++;
          cout<<">50K"<<"xxxxxxxxxxxxxxxxxx"<<"<=50K"<<"    "<<endl;
         }
         
 }
 }
+double acc, pre, rec, fscore;
+acc= 1.0*(tp+tn)/(total);
+pre= 1.0*(tp)/(fp+tp);
+rec= 1.0*(tp)/(fn+tp);
+fscore= 2* (pre*rec)/(pre+rec);
 cout<<endl;
-cout<<"Correctly Predicted:"<<ct+bt<<endl;
+cout<<"Correctly Predicted:"<<tp+tn<<endl;
 cout<<"Total Cases:        "<<total<<endl;
 cout<<"----------------------------"<<endl;
 
-cout<<"Accuracy is:         "<<1.0*(ct+bt)/(total)*100<<"%"<<endl;   
+cout<<"Accuracy is:         "<<acc*100<<"%"<<endl;   
+cout<<"Precision is:        "<<pre*100<<"%"<<endl;   
+cout<<"Recall is:           "<<rec*100<<"%"<<endl;   
+cout<<"Fscore is:           "<<fscore<<endl;     
     return 0;
+
 }

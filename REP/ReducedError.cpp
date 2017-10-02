@@ -1,26 +1,11 @@
-#include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include <iomanip>
-#include <algorithm>
-#include <map>
-#include <stack>
-#include <queue> 
-#include <deque>
-#include <list>
-#include <utility>
-#include <fstream>
-#include <time.h> 
-#include <cstdlib>
-#include <string.h>
+#include <bits/stdc++.h>
 #define lli long long int  
 
 using namespace std;
 
 lli n, d, splindex ; 
 
-lli data[6000][100], test[6000][100], all[6000][100] ; 
+lli data[60000][1000], test[60000][1000], all[60000][1000] ; 
 
 double early, info_gain_threshold, global_error ; 
 
@@ -61,7 +46,7 @@ node *head ;
 int read_data()
 {
 
-	freopen ("ticdata2000.txt","r",stdin) ; 
+	freopen ("MLTrain.txt","r",stdin) ; 
 
 	cin >> n >> d ;
 	
